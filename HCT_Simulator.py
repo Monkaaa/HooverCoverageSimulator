@@ -24,8 +24,9 @@ def draw_on_mouse(e):
     pixel_x = x % cell_size
     pixel_y = y % cell_size
 
-    if not cells[cell_y][cell_x][pixel_x][pixel_y]:
-        cells[cell_y][cell_x][pixel_x][pixel_y] = True
+    if not cells[cell_y][cell_x][pixel_y][pixel_x]:
+        cells[cell_y][cell_x][pixel_y][pixel_x] = True
+        calc_percentage(x, y)
 
     if last_pos != None:
         canvas.create_line(last_pos[0], last_pos[1], x, y, fill='white')
@@ -55,6 +56,22 @@ def initialise_pixel_status():
             # all of current cells data has been set and can be appended to the cell_row before moving onto next cell in row
             cell_row.append(cell)
         cells.append(cell_row)
+
+
+def calc_percentage(current_x, current_y):
+    total_cell_pixels = cell_size * cell_size
+    current_cell = cells[current_y//cell_size][current_x//cell_size]
+
+    total_touched_pixels = 0
+
+    for pixel_row in current_cell:
+        for pixel in pixel_row:
+            if pixel:
+                total_touched_pixels += 1
+
+    cell_percent_filled = total_touched_pixels / total_cell_pixels * 100
+
+
 
 
 
