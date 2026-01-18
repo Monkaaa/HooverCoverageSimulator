@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import ttk
 
 def draw_grid():
     # draw vertical lines
@@ -26,7 +27,7 @@ def draw_on_mouse(e):
 
     if not cells[cell_y][cell_x][pixel_y][pixel_x]:
         cells[cell_y][cell_x][pixel_y][pixel_x] = True
-        calc_percentage(x, y)
+        cell_percent = calc_percentage(x, y)
 
     if last_pos != None:
         canvas.create_line(last_pos[0], last_pos[1], x, y, fill='white')
@@ -71,7 +72,16 @@ def calc_percentage(current_x, current_y):
 
     cell_percent_filled = total_touched_pixels / total_cell_pixels * 100
 
+    cell_percentages[current_y//cell_size][current_x//cell_size] = cell_percent_filled
 
+
+def create_labels():
+    for cell in cells:
+        # create a label for each cell
+        label = ttk.Label(canvas, text='Full name:')
+
+def display_cell_percent(cell_percent):
+    pass
 
 
 
@@ -84,7 +94,12 @@ canvas_width = 1920
 canvas_height = 1080
 cell_size = 200
 
+percent_filled = 0
+
 cells = []
+
+# initialising list using a list comprehension
+cell_percentages = [[0 for column in range(canvas_height//cell_size)] for row in range(canvas_width//cell_size)]
 
 # creating base canvas
 canvas = Canvas(root, bg='grey', width=canvas_width, height=canvas_height)
@@ -94,7 +109,7 @@ canvas.grid(row=0, column=0, sticky=(N, W, E, S))
 draw_grid()
 
 # call event
-canvas.bind('<Motion>',draw_on_mouse)
+canvas.bind('<Motion>', draw_on_mouse)
 
 # initialise 2d data structure to false
 initialise_pixel_status()
