@@ -15,8 +15,17 @@ def draw_on_mouse(e):
     # access global variable as we cannot return values from this function
     global last_pos
 
-    x = e.x
-    y = e.y
+    x= e.x
+    y= e.y
+
+    cell_x = x // cell_size
+    cell_y = y // cell_size
+
+    pixel_x = x % cell_size
+    pixel_y = y % cell_size
+
+    if not cells[cell_y][cell_x][pixel_x][pixel_y]:
+        cells[cell_y][cell_x][pixel_x][pixel_y] = True
 
     if last_pos != None:
         canvas.create_line(last_pos[0], last_pos[1], x, y, fill='white')
@@ -48,13 +57,15 @@ def initialise_pixel_status():
         cells.append(cell_row)
 
 
+
+
 root = Tk()
 
 # initialising variable values
 last_pos = None
 canvas_width = 1920
 canvas_height = 1080
-cell_size = 80
+cell_size = 200
 
 cells = []
 
