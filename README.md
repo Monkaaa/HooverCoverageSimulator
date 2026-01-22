@@ -3,7 +3,7 @@
 A Python project using Tkinter to divide a canvas into grid cells and track mouse movement across pixels to estimate cell coverage.  
 Built to learn more about coordinate systems and multi dimension data structures.
 
-![Demo of HooverCoverageSimulator](Draw_on_grid.gif)
+![Demo of HooverCoverageSimulator](Draw_on_grid2.gif)
 
 
 ## Why Hoover Coverage?
@@ -38,9 +38,13 @@ Mouse movement is used to simulate the hoover moving across the floor. As the mo
 
 ## Progress
 **Initial prototype**
+
 ![Demo of HooverCoverageSimulator](Draw_on_grid.gif)
 
 **Updated prototype**
+
+![Demo of HooverCoverageSimulator](Draw_on_grid2.gif)
+
 
 ## What I Learned
 
