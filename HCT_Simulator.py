@@ -76,6 +76,8 @@ def calc_percentage(current_x, current_y):
 
     display_cell_percent(current_x, current_y)
 
+    update_labels(current_x, current_y)
+
 
 def create_labels():
     for y in range(len(cell_percentages)):
@@ -92,6 +94,10 @@ def display_cell_percent(current_x, current_y):
     print(cell_percentages[current_y//cell_size][current_x//cell_size])
 
 
+def update_labels(current_x, current_y):
+    labels[current_y // cell_size][current_x // cell_size].config(
+        text=f"{cell_percentages[current_y // cell_size][current_x // cell_size]:.0f}%"
+    )
 
 
 root = Tk()
